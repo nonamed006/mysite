@@ -32,13 +32,13 @@
 							<c:when test="${vo.depth == 0 }">			
 								<tr>
 									<td>3</td>
-									<td style="text-align:left; padding-left:0px"><a href="">${vo.title }</a></td>
+									<td style="text-align:left; padding-left:0px"><a href="${pageContext.request.contextPath }/board?a=view&no=${vo.no}">${vo.title }</a></td>
 									<td>${vo.userNo }</td>
 									<td>${vo.hit }</td>
 									<td>${vo.regDate }</td>
 									<c:choose>
 										<c:when test='${authUser.no == vo.userNo }'>
-											<td><a href="${pageContext.request.contextPath }/board?a=delete" >삭제</a></td>
+											<td><a href="${pageContext.request.contextPath }/board?a=delete&no=${vo.no}" >삭제</a></td>
 										</c:when>
 										<c:otherwise>
 											<td></td>
