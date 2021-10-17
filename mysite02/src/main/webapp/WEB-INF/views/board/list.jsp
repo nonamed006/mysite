@@ -33,10 +33,17 @@
 								<tr>
 									<td>3</td>
 									<td style="text-align:left; padding-left:0px"><a href="">${vo.title }</a></td>
-									<td>${vo.no }</td>
+									<td>${vo.userNo }</td>
 									<td>${vo.hit }</td>
 									<td>${vo.regDate }</td>
-									<td><a href="" class="del">삭제</a></td>
+									<c:choose>
+										<c:when test='${authUser.no == vo.userNo }'>
+											<td><a href="${pageContext.request.contextPath }/board?a=delete" >삭제</a></td>
+										</c:when>
+										<c:otherwise>
+											<td></td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:when>
 							<c:otherwise>
@@ -45,8 +52,13 @@
 									<td style="text-align:left; padding-left:${20*vo.depth }px"><img src='${pageContext.servletContext.contextPath }/assets/images/reply.png' /><a href="">${vo.title }</a></td>
 									<td>${vo.no }</td> 
 									<td>${vo.hit }</td>
-									<td>${vo.regDate }</td>
-									<td><a href="" class="del">삭제</a></td>
+									<td>${vo.regDate }</td> 
+									<c:when test='${authUser.no == vo.userNo }'>
+										<td><a href="" >삭제</a></td>
+									</c:when>
+									<c:otherwise>
+											<td></td>
+									</c:otherwise>
 								</tr>
 							</c:otherwise>
 						</c:choose>

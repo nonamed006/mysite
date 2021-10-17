@@ -22,7 +22,7 @@ public class WriteAction implements Action {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
 			
-			System.out.println("ghkrdls");	
+			System.out.println("WriteAction");	
 			MvcUtil.redirect(request.getContextPath(), request, response);
 		}	
 		else {
@@ -39,7 +39,7 @@ public class WriteAction implements Action {
 			
 			new BoardDao().insert(vo);
 			
-			MvcUtil.forward("board/list", request, response);
+			MvcUtil.redirect(request.getContextPath() + "/board", request, response);
 		}
 	}
 

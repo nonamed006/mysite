@@ -100,7 +100,7 @@ public class BoardDao {
 			conn = getConnection();
 			
 			String sql ="insert into board"
-					+ "  select null, ?, ?, 0, now(), max(group_no)+1, 0, 0, ? from board";
+					+ "  select null, ?, ?, 0, now(), ifnull(max(group_no)+1, 1), 0, 0, ? from board";
 					
 			pstmt = conn.prepareStatement(sql);
 			
@@ -128,5 +128,7 @@ public class BoardDao {
 		
 		return result;
 	}
+	
+	
 	
 }
