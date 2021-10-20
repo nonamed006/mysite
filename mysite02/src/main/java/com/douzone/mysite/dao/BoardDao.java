@@ -90,6 +90,73 @@ public class BoardDao {
 		return list;
 	}
 	
+	
+	public List<BoardVo> search(String ftitle) {
+		List<BoardVo> list = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+				
+		
+		
+		try {
+			conn = getConnection();
+			
+			String sql = "select * from board where title like ?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ftitle);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Long no = rs.getLong(1);
+				String title = rs.getString(2);
+				String contents = rs.getString(3);
+				int hit = rs.getInt(4);
+				Date regDate = rs.getDate(5);
+				Long groupNo = rs.getLong(6);
+				Long orderNo = rs.getLong(7);
+				Long depth = rs.getLong(8);
+				Long userNo = rs.getLong(9);
+				
+				BoardVo vo = new BoardVo();
+				vo.setNo(no);
+				vo.setTitle(title);
+				vo.setContents(contents);
+				vo.setHit(hit);
+				vo.setRegDate(regDate);
+				vo.setGroupNo(groupNo);
+				vo.setOrderNo(orderNo);
+				vo.setDepth(depth);
+				vo.setUserNo(userNo);
+				
+				list.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
 	public boolean insert(BoardVo vo) {
 		boolean result = false;
 

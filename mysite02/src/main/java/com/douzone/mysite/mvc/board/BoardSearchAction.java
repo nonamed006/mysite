@@ -12,16 +12,16 @@ import com.douzone.mysite.vo.BoardVo;
 import com.douzone.web.mvc.Action;
 import com.douzone.web.util.MvcUtil;
 
-public class BoardListAction implements Action {
+public class BoardSearchAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<BoardVo> list = new BoardDao().findAll();
 		
-		System.out.println(list.get(0));
-		request.setAttribute("list", list);
+		List<BoardVo> vo = new BoardDao().search("%"+request.getParameter("kwd")+"%");
 		
-		MvcUtil.forward("board/list", request, response);
+		request.setAttribute("list", vo);
+		
+		MvcUtil.forward("/board/list", request, response);
 
 	}
 
