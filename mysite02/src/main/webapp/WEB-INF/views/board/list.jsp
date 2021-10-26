@@ -36,7 +36,7 @@
 										<td>3</td>
 										<td style="text-align: left; padding-left: 0px"><a
 											href="${pageContext.request.contextPath }/board?a=view&no=${vo.no}">${vo.title }</a></td>
-										<td>${vo.userNo }</td>
+										<td>${vo.userName }</td>
 										<td>${vo.hit }</td>
 										<td>${vo.regDate }</td>
 										<c:choose>
@@ -55,8 +55,8 @@
 										<td>2</td>
 										<td style="text-align:left; padding-left:${20*vo.depth }px"><img
 											src='${pageContext.servletContext.contextPath }/assets/images/reply.png' /><a
-											href="">${vo.title }</a></td>
-										<td>${vo.no }</td>
+											href="${pageContext.request.contextPath }/board?a=view&no=${vo.no}">${vo.title }</a></td>
+										<td>${vo.userName }</td>
 										<td>${vo.hit }</td>
 										<td>${vo.regDate }</td>
 										<c:choose>
@@ -79,9 +79,9 @@
 				<div class="pager">
 					<ul>
 						<li><a href="">◀</a></li>
-						<li class="selected"><a href="">1</a></li>
-						<li>2</li>
-						<li><a href="">3</a></li>
+						<li class="selected"><a href="${pageContext.request.contextPath }/board?page=1">1</a></li>
+						<li><a href="${pageContext.request.contextPath }/board?page=2">2</a></li>
+						<li><a href="${pageContext.request.contextPath }/board?page=3">3</a></li>
 						<li>4</li>
 						<li>5</li>
 						<li><a href="">▶</a></li>

@@ -13,28 +13,30 @@
 	<div id="container">
 		<c:import url="/WEB-INF/views/includes/header.jsp"/>
 		<div id="content">
-			<div id="board" class="board-form">
-				<table class="tbl-ex">
-					<tr>
-						<th colspan="2">글보기</th>
-					</tr>
-					<tr>
-						<td class="label">제목</td>
-						<td>${vo.title }</td>
-					</tr>
-					<tr>
-						<td class="label">내용</td>
-						<td>
-							<div class="view-content">
-								${vo.contents }
-							</div>
-						</td>
-					</tr>
-				</table>
-				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board">글목록</a>
-					<a href="${pageContext.request.contextPath }/board?a=updateform&no=${vo.no }">글수정</a>
-				</div>
+			<div id="board">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board">
+					<input type = "hidden" name = "a" value="reply">
+					<input type = "hidden" name = "no" value="${no }">
+					<table class="tbl-ex">
+						<tr>
+							<th colspan="2">답글쓰기</th>
+						</tr>
+						<tr>
+							<td class="label">제목</td>
+							<td><input type="text" name="title" value=""></td>
+						</tr>
+						<tr>
+							<td class="label">내용</td>
+							<td>
+								<textarea id="content" name="content"></textarea>
+							</td>
+						</tr>
+					</table>
+					<div class="bottom">
+						<a href="/board">취소</a>
+						<input type="submit" value="등록">
+					</div>
+				</form>				
 			</div>
 		</div>
 		<c:import url="/WEB-INF/views/includes/navigation.jsp" />

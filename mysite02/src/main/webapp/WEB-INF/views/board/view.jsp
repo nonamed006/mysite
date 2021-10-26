@@ -34,6 +34,7 @@
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath }/board">글목록</a>
 					<a href="${pageContext.request.contextPath }/board?a=updateform&no=${vo.no }">글수정</a>
+					<a href="${pageContext.request.contextPath }/board?a=replyform&no=${vo.no }">답글쓰기</a>
 				</div>
 			</div>
 		</div>

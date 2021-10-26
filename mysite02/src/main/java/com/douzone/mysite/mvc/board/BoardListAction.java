@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.douzone.mysite.dao.BoardDao;
 import com.douzone.mysite.vo.BoardVo;
+import com.douzone.mysite.vo.PageVo;
 import com.douzone.web.mvc.Action;
 import com.douzone.web.util.MvcUtil;
 
@@ -16,7 +17,18 @@ public class BoardListAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<BoardVo> list = new BoardDao().findAll();
+		PageVo page = null ;
+		if(request.getParameter("page") == null)
+		{
+			page = new PageVo( 1,10);			
+			
+		}else {
+			
+			page = new PageVo( Integer.parseInt(request.getParameter("page")),10);			
+			
+		}
+		
+		List<BoardVo> list = new BoardDao().findAll(page);
 		
 		System.out.println(list.get(0));
 		request.setAttribute("list", list);
